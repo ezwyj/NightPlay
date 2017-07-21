@@ -1,5 +1,6 @@
-﻿using Common.Entity;
-using Common.Service;
+﻿
+using Common;
+using Common.Models;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace MessageServerService
                 {
                     using (var memoryStream = new MemoryStream(bytes))
                     {
-                        var client = ProtoBuf.Serializer.Deserialize<Common.Model.Client>(memoryStream);
+                        var client = ProtoBuf.Serializer.Deserialize<Common.Models.Client>(memoryStream);
                         Console.WriteLine(client.DeviceName);
                         //chengdu_pov.mqtt.iot.gz.baidubce.com
                         lock (GlobalVariable.PovDevices[client.DeviceName.Trim()])
@@ -92,7 +93,7 @@ namespace MessageServerService
                         var client = povDevice.ClientMisstion.Dequeue();
                         ClientService dbService = new ClientService();
 
-                        bool ret = dbService.UpdateClient(client, out msg);
+                        bool ret = dbService.UpdateClient(client);
                         if (!ret)
                         {
                             Console.WriteLine(msg);
@@ -171,7 +172,7 @@ namespace MessageServerService
 
         }
 
-        private static void Device_Send(Common.Model.Client client)
+        private static void Device_Send(Common.Models.Client client)
         {
             string msg = "";
             MqttClient mqttClient = new MqttClient(mqttServerAddress);
