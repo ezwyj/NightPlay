@@ -1,0 +1,163 @@
+@charset "UTF-8";
+/**
+ * 样式文件
+ * @authors Emmett <heron1991@163.com>
+ * @date    2017-03-10 15:07:08
+ */
+
+/* reset start */
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+/* reset end */
+
+.container {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+.page-loading {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 999;
+	background-color: #fff;
+}
+.page-loading.hide {
+	opacity: 0;
+	display: none;
+}
+.page-loading .weui-mask_transparent {
+	background-color: rgba(0,0,0,.5);
+}
+.page {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+    z-index: 1;
+    opacity: 0;
+	background-color: #f8f8f8;
+	overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.page.js-show {
+	opacity: 1;
+	z-index: 2;
+}
+@-webkit-keyframes pageIn {
+	0% {
+		-webkit-transform: translate3d(100%,0,0);
+		transform: translate3d(100%,0,0);
+		opacity: 0;
+	}
+	to {
+		-webkit-transform: translateZ(0);
+		transform: translateZ(0);
+		opacity: 1;
+	}
+}
+@keyframes pageIn {
+	0% {
+		-webkit-transform: translate3d(100%,0,0);
+		transform: translate3d(100%,0,0);
+		opacity: 0;
+	}
+	to {
+		-webkit-transform: translateZ(0);
+		transform: translateZ(0);
+		opacity: 1;
+	}
+}
+@-webkit-keyframes pageOut {
+	0% {
+		-webkit-transform: translateZ(0);
+		transform: translateZ(0);
+		opacity: 1;
+	}
+	to {
+		-webkit-transform: translate3d(100%,0,0);
+		transform: translate3d(100%,0,0);
+		opacity: 0;
+	}
+}
+@keyframes pageOut {
+	0% {
+		-webkit-transform: translateZ(0);
+		transform: translateZ(0);
+		opacity: 1;
+	}
+	to {
+		-webkit-transform: translate3d(100%,0,0);
+		transform: translate3d(100%,0,0);
+		opacity: 0;
+	}
+}
+.page.slideIn {
+	-webkit-animation: pageIn .2s forwards;
+	animation: pageIn .2s forwards;
+}
+.page.slideOut {
+	-webkit-animation: pageOut .2s forwards;
+	animation: pageOut .2s forwards;
+}
+
+.cropper {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 122px;
+	left: 0;
+	z-index: 2;
+	overflow: hidden;
+}
+.cropper-wrapper {
+	position: absolute;
+	top: 0;
+	right: 15px;
+	bottom: 0;
+	left: 15px;
+	text-align: center;
+}
+.cropper-src  {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	overflow: hidden;
+}
+.cropper-mask {
+	position: absolute;
+	top: 0;
+	right: -15px;
+	bottom: 0;
+	left: -15px;
+	z-index: 2;
+	background-color: rgba(0,0,0,.5);
+}
+.cropper-clip-area {
+	position: absolute;
+	z-index: 3;
+	overflow: hidden;
+	border-radius: 50%;
+}
+.cropper-option {
+	position: absolute;
+	bottom: 0;
+	z-index: 5;
+	width: 100%;
+	height: 122px;
+	padding-top: 10px;
+	background-color: rgba(0,0,0,.5);
+}
+.cropper-option .weui-flex + .weui-flex {
+	margin-top: 10px;
+}
+.cropper-option .weui-flex__item {
+	padding: 0 15px;
+}
