@@ -10,12 +10,11 @@ if (typeof OP_CONFIG != 'undefined' && OP_CONFIG.module && OP_CONFIG.page) {
             'util': 'lib/util',
             'ztree': OP_CONFIG.rootUrl + 'assets/plugins/ztree/jquery.ztree.all-3.5.min',
             'datepicker': OP_CONFIG.rootUrl + 'assets/plugins/datepicker/bootstrap-datepicker.min',
-            'selector': OP_CONFIG.rootUrl + 'assets/plugins/selector/selector',
             'template': OP_CONFIG.rootUrl + 'assets/plugins/art-template',
             'echarts': OP_CONFIG.rootUrl + 'assets/plugins/echarts/echarts-all',
-            'mqtt': 'lib/mqttws31',
-            'hammer': 'lib/hammer.min',
-            'wx-sdk': 'http://res.wx.qq.com/open/js/jweixin-1.1.0'
+            'wx-sdk': 'http://res.wx.qq.com/open/js/jweixin-1.1.0',
+            'mqtt':'lib/mqttws31-min',
+            'hammer':'lib/mammer.min'
         },
         shim: {
             'bootstrap': {
@@ -36,14 +35,8 @@ if (typeof OP_CONFIG != 'undefined' && OP_CONFIG.module && OP_CONFIG.page) {
             'datepicker': {
                 deps: ['jquery']
             },
-            'selector': {
-                deps: ['jquery', 'tlayer']
-            },
             'echarts': {
-                deps:['jquery']
-            },
-            'mqtt': {
-                exports: 'mqtt'
+                deps: ['jquery']
             }
         },
         urlArgs: 'bust=' + (new Date()).getTime()   //开发环境下禁用缓存，生成环境要移除

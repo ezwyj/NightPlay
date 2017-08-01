@@ -1,17 +1,43 @@
-﻿var OP_CONFIG = {
-    staticVersion: '1.0.0',
-    rootUrl: '/',
-};
+﻿define('common', ['jquery', 'util'], function ($, util) {
+    //导航栏选中
+    $('#menu-' + OP_CONFIG.module + '-' + OP_CONFIG.page).addClass('active');
 
-require.config({
-    baseUrl: './js',
-    paths: {
-        'jquery': 'jquery-3.1.1.min',
-        'hammer': 'hammer.min',
-        'wx-sdk': 'http://res.wx.qq.com/open/js/jweixin-1.1.0'
-    },
-    shim: {
+    //设置弹出框图片路径
+    //$.tlayer('global', { imgPath: OP_CONFIG.rootUrl + 'assets/img/', theme: 'blue' });
 
-    },
-    urlArgs: 'v=' + OP_CONFIG.staticVersion
+
+    //禁用ajax缓存
+    $.ajaxSetup({ cache: false });
+
+    //设置页面最小高度
+    var minHeight = $(window).height() - $('#footer').outerHeight(true);
+    $('#main').css('min-height', minHeight);
+
+    //panel展开/收起
+    $(document).on('click', '.panel[data-expand] .panel-heading', function () {
+        var panel = $(this).parent();
+        var expand = panel.attr('data-expand');
+
+        panel.children('.panel-body').slideToggle('fast', function () {
+            if (expand == 'Y') {
+                panel.attr('data-expand', 'N');
+            } else {
+                panel.attr('data-expand', 'Y');
+            }
+        });
+    });
+
+    $(document).on('click', '.panel[data-expand] .btn', function (e) {
+        e.stopPropagation();
+    });
+
+
+
+    Date.prototype.toCSharpTime = function () {
+        return '/Date(' + this.getTime() + ')/';
+    }
+
+
+
+    return $;
 });
